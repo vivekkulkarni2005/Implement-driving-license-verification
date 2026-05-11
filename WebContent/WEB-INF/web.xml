@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    web.xml - Deployment Descriptor
+    
+    This file configures the web application for Apache Tomcat.
+    It defines servlet mappings, welcome files, and display settings.
+    
+    Part of: Driving License Verification System
+    Location: WEB-INF/web.xml
+    
+    @author Vivek
+    @version 1.0
+-->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         id="WebApp_ID"
+         version="4.0">
+
+    <!-- Application Display Name -->
+    <display-name>Driving License Verification System</display-name>
+
+    <!-- Application Description -->
+    <description>
+        A professional web application for verifying driving license details,
+        validating license authenticity, and checking expiry status.
+        Built using JSP, Servlets, JavaBeans, and MVC Architecture.
+    </description>
+
+    <!-- ========== Welcome File List ========== -->
+    <!-- The default page displayed when the application is accessed -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- ========== Servlet Configuration ========== -->
+    
+    <!-- MainServlet Definition -->
+    <servlet>
+        <servlet-name>MainServlet</servlet-name>
+        <servlet-class>com.license.controller.MainServlet</servlet-class>
+        <description>
+            Controller servlet that handles license verification requests.
+            Processes form data and forwards results to the view layer.
+        </description>
+        <!-- Load on startup for faster first request -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- MainServlet URL Mapping -->
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/verify</url-pattern>
+    </servlet-mapping>
+
+    <!-- ========== Session Configuration ========== -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!-- ========== Error Pages ========== -->
+    
+    <!-- Custom 404 Error Page -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+
+    <!-- Custom 500 Error Page -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+
+</web-app>
